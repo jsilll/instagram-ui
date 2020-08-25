@@ -2,6 +2,12 @@
 
 Instagram UI redesign using Vue
 
+## UI Inspiration
+Base inspiration from two diferent concepts: one by [Masudur Rahman](https://dribbble.com/shots/5423776-Instagram-Profile-Concept-for-Web-Freebie/attachments) and the other by the [Veno](https://dribbble.com/shots/6580622-Instagram-Redesign-Concept-Desktop-ver) team.
+
+## Preview
+![Insp1](https://raw.githubusercontent.com/jsilll/instagram-ui/master/screenshots/screenshot-v1.0.png)
+
 ## Project setup
 
 ```
