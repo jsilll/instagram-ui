@@ -25,26 +25,33 @@
           <v-icon size="25" left>mdi-plus</v-icon>Add photo
         </span>
       </v-btn>
-      <div v-for="navlink in navlinks" :key="navlink.title">
-        <v-btn
-          icon
-          :color="navlink.toggled ? 'primary':'grey'"
-          @click.prevent="NavClicked(navlink.title)"
-        >
-          <v-icon>{{navlink.icons[navlink.toggled]}}</v-icon>
-        </v-btn>
-        <v-icon class="primary--text mb-5 ml-0">mdi-circle-small</v-icon>
-      </div>
       <span v-if="!drawer">
-        <v-avatar size="32" class="instagram ml-5">
-          <v-img
-            align="center"
-            src="../assets/mkbhd.png"
-            lazy-src="../assets/mkbhd.png"
-            alt="Marques Brownlee"
-          ></v-img>
+        <span v-for="navlink in navlinks" :key="navlink.title">
+          <v-btn
+            icon
+            :color="navlink.toggled ? 'primary':'grey'"
+            @click.prevent="NavClicked(navlink.title)"
+          >
+            <v-icon>{{navlink.icons[navlink.toggled]}}</v-icon>
+            <v-badge
+              v-if="navlink.notifications"
+              dot
+              overlap
+              offset-y="-8"
+              offset-x="2"
+              value="2"
+              color="primary"
+              class="primary--text"
+            ></v-badge>
+          </v-btn>
+        </span>
+        <v-avatar flat class="instagram" size="38">
+          <v-avatar size="35" color="grey lighten-4">
+            <v-avatar size="32">
+              <v-img src="../assets/mkbhd.png"></v-img>
+            </v-avatar>
+          </v-avatar>
         </v-avatar>
-        <v-icon class="mt-3">mdi-menu-down</v-icon>
       </span>
     </v-app-bar>
     <v-navigation-drawer width="450" v-model="drawer" flat color="grey lighten-4" app>
@@ -56,73 +63,70 @@
       </v-layout>
       <v-divider></v-divider>
       <v-layout class="mt-5 mb-5">
-        <v-flex>
+        <v-flex text-center>
           <v-layout>
-            <v-flex text-center>
-              <v-layout>
-                <v-flex>
-                  <v-avatar flat class="instagram" size="145">
-                    <v-avatar size="139" color="grey lighten-4">
-                      <v-avatar size="120">
-                        <v-img src="../assets/mkbhd.png"></v-img>
-                      </v-avatar>
-                    </v-avatar>
+            <v-flex>
+              <v-avatar flat class="instagram" size="145">
+                <v-avatar size="139" color="grey lighten-4">
+                  <v-avatar size="120">
+                    <v-img src="../assets/mkbhd.png"></v-img>
                   </v-avatar>
-                </v-flex>
-              </v-layout>
-              <div class="mt-4 title">
-                Marques Brownlee
-                <v-icon small color="blue">mdi-check-decagram</v-icon>
-              </div>
-              <p class="text-body-1 grey--text text-center">@mkbhd</p>
-              <div class="mt-21 subtitle-2 grey--text">New York, NY</div>
-              <div class="mt-5"></div>
-              <v-layout justify-space-between>
-                <v-flex>
-                  <div class="text-subtitle-1 font-weight-medium text-center">1,506</div>
-                  <div class="text-body-1 grey--text text-center text-capitalize">Posts</div>
-                </v-flex>
-                <v-divider vertical></v-divider>
-                <v-flex>
-                  <div class="text-subtitle-1 font-weight-medium text-center">2,7m</div>
-                  <div class="text-body-1 grey--text text-center text-capitalize">Followers</div>
-                </v-flex>
-                <v-divider vertical></v-divider>
-                <v-flex>
-                  <div class="text-subtitle-1 font-weight-medium text-center">388</div>
-                  <div class="text-body-1 grey--text text-center text-capitalize">Following</div>
-                </v-flex>
-              </v-layout>
+                </v-avatar>
+              </v-avatar>
+            </v-flex>
+          </v-layout>
+          <div class="mt-4 title">
+            Marques Brownlee
+            <v-icon small color="blue">mdi-check-decagram</v-icon>
+          </div>
+          <p class="text-body-1 grey--text text-center">@mkbhd</p>
+          <div class="mt-21 subtitle-2 grey--text">New York, NY</div>
+          <div class="mt-5"></div>
+          <v-layout justify-space-between>
+            <v-flex>
+              <div class="text-subtitle-1 font-weight-medium text-center">1,506</div>
+              <v-btn class="text-body-1 grey--text text-center text-capitalize" depressed>Posts</v-btn>
+            </v-flex>
+            <v-divider vertical></v-divider>
+            <v-flex>
+              <div class="text-subtitle-1 font-weight-medium text-center">2,7m</div>
+              <v-btn class="text-body-1 grey--text text-center text-capitalize" depressed>Followers</v-btn>
+            </v-flex>
+            <v-divider vertical></v-divider>
+            <v-flex>
+              <div class="text-subtitle-1 font-weight-medium text-center">388</div>
+              <v-btn class="text-body-1 grey--text text-center text-capitalize" depressed>Following</v-btn>
             </v-flex>
           </v-layout>
         </v-flex>
       </v-layout>
       <v-divider></v-divider>
-      <v-list nav class="mx-5 mt-1">
-        <v-list-item-group mandatory v-model="group" active-class="primary--text text--accent-2">
+      <v-list nav class="mx-5 mt-5" color="grey lighten-3">
+        <v-list-item-group
+          color="red"
+          mandatory
+          v-model="group"
+          active-class="primary--text text--accent-2"
+        >
           <v-list-item v-for="link in links" :key="link.title" link router :to="link.route">
             <v-list-item-icon>
               <v-icon>{{ link.icon }}</v-icon>
+              <v-badge
+                v-if="link.notifications"
+                overlap
+                offset-y="11"
+                offset-x="9"
+                value="2"
+                :content="link.notifications"
+                color="primary"
+                class="primary--text"
+              ></v-badge>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>
-                <span>{{ link.title }}</span>
-                <!-- <v-chip
-                pill
-                v-if="link.notifications"
-                style="float: right;"
-                class="primary--text mr-5"
-                >{{link.notifications}}</v-chip>-->
-                <span
-                  pill
-                  v-if="link.notifications"
-                  style="float: right;"
-                  class="primary--text mr-5"
-                >{{link.notifications}}</span>
-              </v-list-item-title>
+              <v-list-item-title>{{ link.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-divider></v-divider>
+          <v-divider class="mt-2"></v-divider>
           <v-list-item link router :to="logout" class="mt-2">
             <v-list-item-icon>
               <v-icon>mdi-logout-variant</v-icon>
@@ -144,7 +148,7 @@ export default {
     message: "",
     links: [
       {
-        icon: "mdi-view-dashboard-outline",
+        icon: "mdi-home-outline",
         title: "Feed",
         route: "feed",
         state: "grey",
@@ -193,7 +197,7 @@ export default {
         notifications: 5,
       },
       {
-        icon: "mdi-chart-arc",
+        icon: "mdi-poll",
         title: "Stats",
         route: "stats",
         state: "grey",
@@ -209,13 +213,27 @@ export default {
     ],
     navlinks: [
       {
-        icons: ["mdi-email-outline", "mdi-email"],
-        title: "direct",
+        icons: ["mdi-home-outline", "mdi-home"],
+        title: "feed",
+        notifications: 0,
         toggled: 0,
       },
       {
-        icons: ["mdi-heart-outline", "mdi-heart"],
+        icons: ["mdi-compass-outline", "mdi-compass"],
+        title: "explore",
+        notifications: 0,
+        toggled: 0,
+      },
+      {
+        icons: ["mdi-email-outline", "mdi-email"],
+        title: "direct",
+        notifications: 5,
+        toggled: 0,
+      },
+      {
+        icons: ["mdi-bell-outline", "mdi-bell"],
         title: "interactions",
+        notifications: 2,
         toggled: 0,
       },
     ],

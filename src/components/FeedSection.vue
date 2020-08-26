@@ -16,15 +16,48 @@
           <v-icon>mdi-menu</v-icon>
         </v-btn>
         <v-btn icon :color="this.layout ? 'primary':'grey'" @click.prevent="FeedClicked(1)">
-          <v-icon>mdi-view-grid-outline</v-icon>
+          <v-icon>{{this.layout ? 'mdi-view-dashboard' : 'mdi-view-dashboard-outline'}}</v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
-    <v-row class="mt-2">
-      <v-col v-for="(image, id) in feedImages" :key="id">
+    <v-layout wrap justify-space-around class="mt-2">
+      <!-- <v-hover v-slot:default="{ hover }"> -->
+      <v-card hover v-for="(image, id) in feedImages" :key="id" max-width="300" color="red">
+        <v-img max-width="300" :src="image" :lazy-src="image">
+          <!-- Adding Likes and Comments functionality  -->
+
+          <!-- <v-menu transition="fade-transition">
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out black v-card--reveal display-3 white--text"
+                  style="height: 100%;"
+                >
+                  <v-btn icon :ripple="false" class="mt-3" x-large>
+                    <v-icon color="white">mdi-heart-outline</v-icon>
+                  </v-btn>
+                  <v-btn icon :ripple="false" class="mt-3" x-large>
+                    <v-icon color="white">mdi-comment-outline</v-icon>
+                  </v-btn>
+                  <v-btn icon :ripple="false" class="mt-3" x-large>
+                    <v-icon color="white">mdi-send-outline</v-icon>
+                  </v-btn>
+                </div>
+              </v-menu>
+              <v-expand-transition></v-expand-transition>
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                </v-row>
+          </template>-->
+        </v-img>
+      </v-card>
+      <!-- </v-hover> -->
+    </v-layout>
+    <v-row v-for="(image, id) in feedImages" :key="id" class="mt-2">
+      <v-layout align-start justify-center>
         <!-- <v-hover v-slot:default="{ hover }"> -->
-        <v-card height="350" width="300" color="white">
-          <v-img height="350" width="300" :src="image" :lazy-src="image">
+        <v-card height="auto" width="40%" color="blue">
+          <v-img height="auto" width="100%" :src="image" :lazy-src="image">
             <!-- Adding Likes and Comments functionality  -->
 
             <!-- <v-menu transition="fade-transition">
@@ -53,7 +86,7 @@
           </v-img>
         </v-card>
         <!-- </v-hover> -->
-      </v-col>
+      </v-layout>
     </v-row>
   </div>
 </template>
