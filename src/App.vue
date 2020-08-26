@@ -4,11 +4,11 @@
     <v-main>
       <router-view></router-view>
     </v-main>
-    <v-footer app color="primary" class="white--text">
+    <!-- <v-footer app color="primary" class="white--text">
       <span>João Silveira</span>
       <v-spacer></v-spacer>
       <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
