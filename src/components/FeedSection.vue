@@ -22,7 +22,14 @@
     </v-layout>
     <v-layout wrap justify-space-around class="mt-2">
       <!-- <v-hover v-slot:default="{ hover }"> -->
-      <v-card hover v-for="(image, id) in feedImages" :key="id" max-width="300" color="red">
+      <v-card
+        hover
+        v-for="(image, id) in feedImages"
+        :key="id"
+        max-width="300"
+        color="red"
+        class="my-4"
+      >
         <v-img max-width="300" :src="image" :lazy-src="image">
           <!-- Adding Likes and Comments functionality  -->
 
