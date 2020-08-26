@@ -8,7 +8,7 @@
       <span>João Silveira</span>
       <v-spacer></v-spacer>
       <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer> -->
+    </v-footer>-->
   </v-app>
 </template>
 
@@ -29,6 +29,6 @@ export default {
 <style>
 .instagram {
   background: #d6249f;
-  background: radial-gradient(circle at 30% 107%, #e43869 55%, #f8a349 85%);
+  background: radial-gradient(circle at 30% 107%, #f8a349 55%, #e43869 85%);
 }
 </style>

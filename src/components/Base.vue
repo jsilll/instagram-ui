@@ -101,13 +101,8 @@
         </v-flex>
       </v-layout>
       <v-divider></v-divider>
-      <v-list nav class="mx-5 mt-5" color="grey lighten-3">
-        <v-list-item-group
-          color="red"
-          mandatory
-          v-model="group"
-          active-class="primary--text text--accent-2"
-        >
+      <v-list nav class="mx-5 mt-2">
+        <v-list-item-group eager color="primary" mandatory v-model="group">
           <v-list-item v-for="link in links" :key="link.title" link router :to="link.route">
             <v-list-item-icon>
               <v-icon>{{ link.icon }}</v-icon>

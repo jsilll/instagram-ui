@@ -1,8 +1,31 @@
 <template>
   <v-container class="px-10">
-    <FeedStories />
+    <Stories />
     <v-divider></v-divider>
-    <FeedSection />
+    <div class="mt-8">
+      <v-layout>
+        <v-flex text-left>
+          <span class="text-h3 font-weight-medium">Feed</span>
+        </v-flex>
+      </v-layout>
+      <v-layout>
+        <v-flex text-right>
+          <v-btn
+            icon
+            :color="!this.layout ? 'primary':'grey'"
+            @click.prevent="FeedClicked(0)"
+            class="mr-1"
+          >
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
+          <v-btn icon :color="this.layout ? 'primary':'grey'" @click.prevent="FeedClicked(1)">
+            <v-icon>{{this.layout ? 'mdi-view-dashboard' : 'mdi-view-dashboard-outline'}}</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </div>
+    <FeedGrid v-if="this.layout" />
+    <FeedRows v-if="!this.layout" />
   </v-container>
   <!-- <v-container fluid class="ma-5">
     <v-layout row wrap class="d-flex" cols="12" justify-center>
@@ -11,18 +34,21 @@
 </template>
 
 <script>
-import FeedStories from "../components/FeedStories";
-import FeedSection from "../components/FeedSection";
+import Stories from "../components/Stories";
+import FeedGrid from "../components/FeedGrid";
+import FeedRows from "../components/FeedRows";
 
 export default {
   components: {
-    FeedStories,
-    FeedSection,
+    Stories,
+    FeedGrid,
+    FeedRows,
   },
   props: {
     source: String,
   },
   data: () => ({
+    layout: 0,
     images: [
       {
         id: 0,
@@ -54,6 +80,11 @@ export default {
       },
     ],
   }),
+  methods: {
+    FeedClicked(layout) {
+      this.layout = layout;
+    },
+  },
 };
 </script>
 
